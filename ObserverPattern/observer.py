@@ -2,7 +2,7 @@ class BankNewsletter:
     def __init__(self):
         self.customers = []
 
-    def register(self, customer: "Customer"):
+    def register(self, customer: "Customer"): # forward reference
         self.customers.append(customer)
 
     def unregister(self, customer: "Customer"):
