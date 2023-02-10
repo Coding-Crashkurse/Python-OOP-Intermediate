@@ -4,6 +4,7 @@ class Car:
         self.model = model
         self.color = color
 
+
 class CarBuilder:
     def __init__(self):
         self.brand = ""
@@ -23,11 +24,8 @@ class CarBuilder:
         return self
 
     def build(self):
-        return Car(
-            brand=self.brand,
-            model=self.model,
-            color=self.color
-        )
+        return Car(brand=self.brand, model=self.model, color=self.color)
+
 
 builder = CarBuilder().set_brand("Ford").set_model("Mustang").set_color("green")
 print(builder.__dict__)
