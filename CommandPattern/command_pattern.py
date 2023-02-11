@@ -1,37 +1,61 @@
-from abc import ABC, abstractmethod
+class Car:
+    def __init__(self):
+        self.speed = 0
+
+    def accelerate(self, amount):
+        self.speed += amount
+        print(f"Accelerating, new speed is {self.speed}")
+
+    def brake(self, amount):
+        self.speed -= amount
+        print(f"Braking, new speed is {self.speed}")
 
 
-class Command(ABC):
-    @abstractmethod
+class Command:
     def execute(self):
         pass
 
 
-class VerbrennungsmotorStartCommand(Command):
+class AccelerateCommand(Command):
+    def __init__(self, car, amount):
+        self.car = car
+        self.amount = amount
+
     def execute(self):
-        print("Verbrennungsmotor gestartet")
+        self.car.accelerate(self.amount)
 
 
-class ElektromotorStartCommand(Command):
+class BrakeCommand(Command):
+    def __init__(self, car, amount):
+        self.car = car
+        self.amount = amount
+
     def execute(self):
-        print("Elektromotor gestartet")
+        self.car.brake(self.amount)
 
 
-class Auto:
+class Remote:
     def __init__(self):
-        self.command = None
+        self.commands = []
 
-    def set_command(self, command: Command):
-        self.command = command
+    def add_command(self, command):
+        self.commands.append(command)
 
-    def start(self):
-        self.command.execute()
-        print("Auto gestartet")
+    def execute_commands(self):
+        for command in self.commands:
+            command.execute()
+        self.commands.clear()
 
 
-auto = Auto()
-auto.set_command(VerbrennungsmotorStartCommand())
-auto.start()
+car = Car()
+remote = Remote()
 
-auto.set_command(ElektromotorStartCommand())
-auto.start()
+accelerate_command = AccelerateCommand(car, 10)
+brake_command = BrakeCommand(car, 5)
+
+remote.add_command(accelerate_command)
+remote.add_command(accelerate_command)
+remote.add_command(accelerate_command)
+remote.add_command(brake_command)
+
+remote.execute_commands()
