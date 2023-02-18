@@ -1,0 +1,13 @@
+Single Responsibility Principle (SRP): Die Klasse Auto hat mehrere Verantwortlichkeiten. Sie ist für die Verwaltung der Geschwindigkeit des Autos und die Steuerung des Motors zuständig. Dadurch wird es schwieriger, den Code zu warten, zu testen und zu erweitern.
+Open-Closed Principle (OCP): Die Klasse Auto ist nicht offen für Erweiterungen, da sie keine Schnittstelle zur Implementierung neuer Motortypen bereitstellt. Stattdessen müssen Sie den Code ändern, um neue Motortypen hinzuzufügen.
+Liskov Substitution Principle (LSP): Die Klasse Auto kann nicht durch Subklassen ersetzt werden, da es keine Schnittstellen definiert, die durch Subklassen implementiert werden können.
+Interface Segregation Principle (ISP): Die Klasse Auto hat keine Schnittstellen, so dass es schwierig ist, sie zu testen, zu warten oder zu erweitern, ohne den Code zu ändern.
+Dependency Inversion Principle (DIP): Die Klasse Auto hat eine starke Abhängigkeit von den konkreten Implementierungen des Verbrennungsmotors und des Elektromotors, anstatt von abstrakten Schnittstellen. Dadurch wird es schwieriger, den Code zu testen und zu erweitern.
+
+------------
+
+Das Interface Segregation Principle (ISP) wird eingehalten, indem die Abstraktion des Motors in der Klasse Motor definiert wird. Eine Schnittstelle ist in diesem Fall nicht unbedingt notwendig, da es sich um eine reine abstrakte Basisklasse handelt.
+Das Single Responsibility Principle (SRP) wird eingehalten, indem die Verantwortlichkeit für das Starten des Motors in die Klasse Motor verlagert wird. Der Auto Klasse ist es nun egal, welcher Typ von Motor es ist und wie er gestartet wird, solange er die Motor-Schnittstelle implementiert.
+Das Liskov Substitution Principle (LSP) wird eingehalten, indem die Motor-Klasse als abstrakte Basisklasse definiert wird, und die Verbrennungsmotor- und Elektromotor-Klassen als konkrete Implementierungen. Das bedeutet, dass jede Instanz der beiden konkreten Klassen als Instanz der Basisklasse verwendet werden kann, ohne dass die Funktionalität der Motor-Schnittstelle beeinträchtigt wird.
+Das Open-Closed Principle (OCP) wird eingehalten, indem die Motor-Klasse abstrakt ist und eine Erweiterung ermöglicht, indem eine neue Klasse, die die Motor-Schnittstelle implementiert, hinzugefügt wird, ohne dass die Funktionalität der bestehenden Klassen beeinträchtigt wird.
+Das Dependency Inversion Principle (DIP) wird eingehalten, indem die Auto-Klasse von der Abstraktion Motor abhängt, anstatt von einer konkreten Implementierung. Die Abhängigkeit wird zur Laufzeit injiziert, indem eine Instanz der Verbrennungsmotor- oder Elektromotor-Klasse an den Konstruktor der Auto-Klasse übergeben wird. Dadurch wird die Auto-Klasse flexibler und einfacher testbar.
